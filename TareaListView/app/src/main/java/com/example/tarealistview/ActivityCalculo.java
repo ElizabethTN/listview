@@ -11,38 +11,39 @@ import android.widget.Toast;
 
 public class ActivityCalculo extends AppCompatActivity {
 
-    EditText eT1,eT2;
-    Button bCalcular;
+    EditText eT,eNombre;
+    Button bGenerar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculo);
-        eT1 = findViewById(R.id.editText);
-        eT2 = findViewById(R.id.editText2);
-        bCalcular = findViewById(R.id.button);
+        eT = findViewById(R.id.editText);
+        eNombre = findViewById(R.id.editText2);
+        bGenerar = findViewById(R.id.button);
         getSupportActionBar().hide();
 
-        bCalcular.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("DefaultLocale")
+        bGenerar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //obtencion del valor
+                int num = Integer.parseInt(eT.getText().toString());
+                int nombre = Integer.parseInt(eNombre.getText().toString());
 
-                try {
-                    String velocidadS = eT1.getText().toString();
-                    String tiempoS = eT2.getText().toString();
-                    float velocidad = Float.parseFloat(velocidadS);
-                    float tiempo = Float.parseFloat(tiempoS);
-                    float distancia = velocidad * tiempo;
-                    Intent intent = new Intent(ActivityCalculo.this, RespuestaCalculo.class);
-                    intent.putExtra("Distancia", distancia);
-                    startActivity(intent);
+                //creasr el puente bundle/caja
+                Bundle bolsa = new Bundle();
+                //meter el valor a la bolsa
+                bolsa.putInt("VALOR",num);
+                bolsa.putInt("NOMBRE",nombre);
+                //crear el intent y hacer el puentes con la siguiente interfaz
+                Intent int1 = new Intent(ActivityCalculo.this ,RespuestaCalculo.class);
+                //vincular el intent con nuestra cajita
+                int1.putExtras(bolsa);
+                //ejecutar la actividad
+                startActivity(int1);
 
-
-                }catch (Exception ex){
-                    Toast.makeText(getApplicationContext(),"Falta capturar valor", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+           }
+       });
     }
 }
 

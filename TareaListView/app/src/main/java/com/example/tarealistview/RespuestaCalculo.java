@@ -8,17 +8,23 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 public class RespuestaCalculo extends AppCompatActivity {
-    TextView resultado;
+
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        float obt = intent.getFloatExtra("Distancia",0);
         setContentView(R.layout.activity_resultadocalculo);
-        resultado= findViewById(R.id.textView2);
-        DecimalFormat formato = new DecimalFormat("#.00");
-        String mensaje = (formato.format(obt)) + " m";
-        resultado.setText(mensaje);
+
+
+        tv = findViewById(R.id.textView2);
+        Bundle bolsaRec = getIntent().getExtras();
+        int num = bolsaRec.getInt("VALOR");
+        String nombre = bolsaRec.getString("NOMBRE");
+        tv.setText("tabla del "+ num + "\n\n" + "Para: " + nombre + "\n\n");
+        for(int i=1; i<=10; i++)
+        {
+            tv.append(String.format("%d x %d = %d\n", num,i,num*i));
+        }
     }
 }

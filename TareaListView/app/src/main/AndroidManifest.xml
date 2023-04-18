@@ -40,6 +40,17 @@
         </activity>
 
         <activity
+            android:name=".RespuestaCalculo"
+            android:exported="true">
+            <intent-filter>
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
             android:name=".ActivityColecciones"
             android:exported="true">
             <intent-filter>
