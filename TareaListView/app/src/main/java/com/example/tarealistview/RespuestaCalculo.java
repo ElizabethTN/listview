@@ -19,12 +19,9 @@ public class RespuestaCalculo extends AppCompatActivity {
 
         tv = findViewById(R.id.textView2);
         Bundle bolsaRec = getIntent().getExtras();
-        int num = bolsaRec.getInt("VALOR");
-        String nombre = bolsaRec.getString("NOMBRE");
-        tv.setText("tabla del "+ num + "\n\n" + "Para: " + nombre + "\n\n");
-        for(int i=1; i<=10; i++)
-        {
-            tv.append(String.format("%d x %d = %d\n", num,i,num*i));
-        }
+        int v = bolsaRec.getInt("VELOCIDAD");
+        int t = bolsaRec.getInt("TIEMPO");
+        int distancia = v*t;
+            tv.append("La Distancia es de  " + "\n\n"+ distancia + " km");
     }
 }
